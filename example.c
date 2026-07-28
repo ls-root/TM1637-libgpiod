@@ -2,11 +2,11 @@
 #include <unistd.h>
 
 // Module connection pins (Digital Pins)
-#define CLK 2
-#define DIO 3
+#define CLK 20
+#define DIO 21
 
-// The amount of time (in milliseconds) between tests
-#define TEST_DELAY 2000
+// The amount of time (in seconds) between tests
+#define TEST_DELAY 2
 
 const uint8_t SEG_DONE[] = {
     SEG_B | SEG_C | SEG_D | SEG_E | SEG_G,         // d
@@ -28,10 +28,10 @@ int main() {
   sleep(TEST_DELAY);
 
   // Selectively set different digits
-  data[0] = encodeDigit(0);
-  data[1] = encodeDigit(1);
-  data[2] = encodeDigit(2);
-  data[3] = encodeDigit(3);
+  data[0] = tm1637_encode_digit(0);
+  data[1] = tm1637_encode_digit(1);
+  data[2] = tm1637_encode_digit(2);
+  data[3] = tm1637_encode_digit(3);
   tm1637_set_segments(dev, data, 4, 0);
   sleep(TEST_DELAY);
 

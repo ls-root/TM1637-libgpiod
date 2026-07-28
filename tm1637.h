@@ -124,7 +124,7 @@ void tm1637_show_number_hex_ex(struct tm1637 *tm1637, uint16_t num,
 // @return A code representing the 7 segment image of the digit (LSB - segment
 // A;
 //         bit 6 - segment G; bit 7 - always zero)
-static uint8_t encodeDigit(uint8_t digit);
+uint8_t tm1637_encode_digit(uint8_t digit);
 
 // Frees `tm1637` struct
 //
