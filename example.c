@@ -92,6 +92,12 @@ int main() {
   tm1637_show_number_hex_ex(dev, 0xd1, 0, true, 2, 0); // Expect: d1__
   sleep(TEST_DELAY);
 
+  // Run through all the dots
+  for (k = 0; k <= 4; k++) {
+    tm1637_show_number_dec_ex(dev, 0, (0x80 >> k), true, 4, 0);
+    sleep(TEST_DELAY);
+  }
+
   // Brightness Test
   for (k = 0; k < 4; k++)
     data[k] = 0xff;

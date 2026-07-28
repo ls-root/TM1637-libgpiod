@@ -66,6 +66,36 @@ void tm1637_set_segments(struct tm1637 *tm1637, const uint8_t segments[],
 // Clear the display
 void tm1637_clear(struct tm1637 *tm1637);
 
+// Display a decimal number, with dot control
+//
+// Display the given argument as a decimal number. The dots between the digits
+// (or colon) can be individually controlled.
+//
+// @param num The number to be shown
+// @param dots Dot/Colon enable. The argument is a bitmask, with each bit
+// corresponding to a dot
+//        between the digits (or colon mark, as implemented by each module).
+//        i.e. For displays with dots between each digit:
+//        * 0.000 (0b10000000)
+//        * 00.00 (0b01000000)
+//        * 000.0 (0b00100000)
+//        * 0.0.0.0 (0b11100000)
+//        For displays with just a colon:
+//        * 00:00 (0b01000000)
+//        For displays with dots and colons colon:
+//        * 0.0:0.0 (0b11100000)
+// @param leading_zero When true, leading zeros are displayed. Otherwise
+// unnecessary digits are
+//        blank. NOTE: leading zero is not supported with negative numbers.
+// @param length The number of digits to set. The user must ensure that the
+// number to be shown
+//        fits to the number of digits requested (for example, if two digits are
+//        to be displayed, the number must be between 0 to 99)
+// @param pos The position of the most significant digit (0 - leftmost, 3 -
+// rightmost)
+void tm1637_show_number_dec_ex(struct tm1637 *tm1637, int num, uint8_t dots,
+                               bool leading_zero, uint8_t length, uint8_t pos);
+
 // Display a decimal number
 //
 // Display the given argument as a decimal number.
