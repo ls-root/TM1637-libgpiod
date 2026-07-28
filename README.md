@@ -4,6 +4,8 @@ A full C port of [avishorp/TM1637](https://github.com/avishorp/TM1637) (original
 
 This project ports the original Arduino/ESP API to plain C. All original functionality is implemented; since the original exposed a C++ `TM1637Display` object, the port uses a `tm1637` struct and a set of functions that are the original method names converted to snake_case with a `tm1637_` prefix. Take a look at the header file for more information.
 
+The example code from the original is also ported in `example.c`.
+
 # Usage
 - Create a `tm1637` instance with `tm1637_init()` which returns a pointer to a `tm1637` struct.
 - Call the ported functions; every original method is available as `tm1637_<method_name_in_snake_case>(tm1637 *dev, ...)`.
