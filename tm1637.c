@@ -159,6 +159,10 @@ bool tm1637_write_byte(struct tm1637 *tm1637, uint8_t b) {
 
 void tm1637_set_brightness(struct tm1637 *tm1637, uint8_t brightness, bool on) {
   tm1637->brightness = (brightness & 0x7) | (on ? 0x08 : 0x00);
+
+  tm1637_start(tm1637);
+  tm1637_write_byte(tm1637, TM1637_I2C_COMM3 + (tm1637->brightness & 0x0f));
+  tm1637_stop(tm1637);
 }
 
 void tm1637_set_segments(struct tm1637 *tm1637, const uint8_t segments[],
